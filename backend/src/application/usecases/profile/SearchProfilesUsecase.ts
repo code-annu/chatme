@@ -12,7 +12,9 @@ export class SearchProfilesUsecase {
   async execute(query: string): Promise<ProfileOutput[]> {
     const users = await this.userRepository.searchByUsername(query);
 
-    return users.map((user) => ({
+    const notDeletedUsers = users.filter((user) => !user.isDeleted);
+
+    return notDeletedUsers.map((user) => ({
       id: user.id,
       username: user.username,
       fullname: user.fullname,

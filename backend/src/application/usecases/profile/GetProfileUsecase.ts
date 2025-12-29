@@ -13,12 +13,8 @@ export class GetProfileUsecase {
   async execute(userId: string): Promise<ProfileOutput> {
     const user = await this.userRepository.findById(userId);
 
-    if (!user) {
-      throw new NotFoundError("User not found");
-    }
-
-    if (user.isDeleted) {
-      throw new NotFoundError("User account has been deleted");
+    if (!user || user.isDeleted) {
+      throw new NotFoundError("User not found or account has been deleted");
     }
 
     return {
