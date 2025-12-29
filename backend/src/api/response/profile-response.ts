@@ -1,7 +1,7 @@
 import { ProfileOutput } from "../../application/dto/profile-dto";
 
 export abstract class ProfileResponseMapper {
-  static mapToProfileDetailsResponse(
+  static toProfileDetailsResponse(
     profile: ProfileOutput,
     message: string,
     code: number
@@ -23,7 +23,7 @@ export abstract class ProfileResponseMapper {
     };
   }
 
-  static mapToProfileListResponse(
+  static toProfileListResponse(
     profiles: ProfileOutput[],
     message: string,
     code: number

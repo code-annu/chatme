@@ -27,7 +27,7 @@ export class ProfileController {
       const userId = req.auth?.userId;
 
       const output = await this.updateProfileUsecase.execute(userId!, req.body);
-      const response = ProfileResponseMapper.mapToProfileDetailsResponse(
+      const response = ProfileResponseMapper.toProfileDetailsResponse(
         output,
         "Profile updated successfully",
         200
@@ -43,7 +43,7 @@ export class ProfileController {
       const userId = req.auth?.userId;
 
       const output = await this.getProfileUsecase.execute(userId!);
-      const response = ProfileResponseMapper.mapToProfileDetailsResponse(
+      const response = ProfileResponseMapper.toProfileDetailsResponse(
         output,
         "Profile retrieved successfully",
         200
@@ -59,7 +59,7 @@ export class ProfileController {
       const userId = req.auth?.userId;
 
       const output = await this.deleteProfileUsecase.execute(userId!);
-      const response = ProfileResponseMapper.mapToProfileDetailsResponse(
+      const response = ProfileResponseMapper.toProfileDetailsResponse(
         output,
         "Profile deleted successfully",
         200
@@ -74,7 +74,7 @@ export class ProfileController {
     try {
       const { id } = req.params;
       const output = await this.getProfileUsecase.execute(id);
-      const response = ProfileResponseMapper.mapToProfileDetailsResponse(
+      const response = ProfileResponseMapper.toProfileDetailsResponse(
         output,
         "Profile retrieved successfully",
         200
@@ -91,7 +91,7 @@ export class ProfileController {
 
       if (typeof username !== "string") {
         // If no query or invalid type, validation can handle or we just return empty
-        const response = ProfileResponseMapper.mapToProfileListResponse(
+        const response = ProfileResponseMapper.toProfileListResponse(
           [],
           "Search results retrieved successfully",
           200
@@ -101,7 +101,7 @@ export class ProfileController {
       }
 
       const output = await this.searchProfilesUsecase.execute(username);
-      const response = ProfileResponseMapper.mapToProfileListResponse(
+      const response = ProfileResponseMapper.toProfileListResponse(
         output,
         "Search results retrieved successfully",
         200
