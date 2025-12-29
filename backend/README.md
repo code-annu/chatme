@@ -50,22 +50,22 @@ This project implements **Clean Architecture** to ensure separation of concerns 
 
 ### Rooms (`/api/rooms`)
 
-| Method | Endpoint        | Description              | Request Body                            |
-| :----- | :-------------- | :----------------------- | :-------------------------------------- | ---------- |
-| `POST` | `/`             | Create a new room        | `{ memberIds: string[], type: "private" | "group" }` |
-| `GET`  | `/`             | Get current user's rooms | -                                       |
-| `GET`  | `/:id`          | Get room details by ID   | -                                       |
-| `POST` | `/:id/messages` | Send a message to a room | `{ text }`                              |
-| `GET`  | `/:id/messages` | Get messages from a room | -                                       |
+| Method | Endpoint        | Description              | Request Body                                          |
+| :----- | :-------------- | :----------------------- | :---------------------------------------------------- |
+| `POST` | `/`             | Create a new room        | `{ memberIds: string[], type: "private" \| "group" }` |
+| `GET`  | `/`             | Get current user's rooms | -                                                     |
+| `GET`  | `/:id`          | Get room details by ID   | -                                                     |
+| `POST` | `/:id/messages` | Send a message to a room | `{ text }`                                            |
+| `GET`  | `/:id/messages` | Get messages from a room | -                                                     |
 
 ### Messages (`/api/messages`)
 
-| Method   | Endpoint      | Description           | Request Body      |
-| :------- | :------------ | :-------------------- | :---------------- | ----------- | --------- |
-| `GET`    | `/:id`        | Get message by ID     | -                 |
-| `PATCH`  | `/:id`        | Update message text   | `{ text }`        |
-| `PATCH`  | `/:id/status` | Update message status | `{ status: "sent" | "delivered" | "read" }` |
-| `DELETE` | `/:id`        | Delete a message      | -                 |
+| Method   | Endpoint      | Description           | Request Body                                  |
+| :------- | :------------ | :-------------------- | :-------------------------------------------- |
+| `GET`    | `/:id`        | Get message by ID     | -                                             |
+| `PATCH`  | `/:id`        | Update message text   | `{ text }`                                    |
+| `PATCH`  | `/:id/status` | Update message status | `{ status: "sent" \| "delivered" \| "read" }` |
+| `DELETE` | `/:id`        | Delete a message      | -                                             |
 
 ## Setup and Configuration
 
