@@ -32,21 +32,21 @@ This project implements **Clean Architecture** to ensure separation of concerns 
 
 ### Authentication (`/api/auth`)
 
-| Method | Endpoint         | Description          | Request Body                    |
-| :----- | :--------------- | :------------------- | :------------------------------ |
-| `POST` | `/signup`        | Register a new user  | `{ username, email, password }` |
-| `POST` | `/login`         | Login user           | `{ email, password }`           |
-| `POST` | `/refresh-token` | Refresh access token | `{ refreshToken }`              |
+| Method | Endpoint         | Description          | Request Body                                                 |
+| :----- | :--------------- | :------------------- | :----------------------------------------------------------- |
+| `POST` | `/signup`        | Register a new user  | `{ username, password, fullname, profilePictureUrl?, bio? }` |
+| `POST` | `/login`         | Login user           | `{ username, password }`                                     |
+| `POST` | `/refresh-token` | Refresh access token | `{ token }`                                                  |
 
 ### Profile (`/api/profile`)
 
-| Method   | Endpoint  | Description                 | Request Body                              |
-| :------- | :-------- | :-------------------------- | :---------------------------------------- |
-| `GET`    | `/me`     | Get current user profile    | -                                         |
-| `PATCH`  | `/me`     | Update current user profile | `{ username?, bio?, profilePictureUrl? }` |
-| `DELETE` | `/me`     | Delete current user account | -                                         |
-| `GET`    | `/search` | Search profiles             | Query params (e.g., `?q=username`)        |
-| `GET`    | `/:id`    | Get profile by ID           | -                                         |
+| Method   | Endpoint  | Description                 | Request Body                                         |
+| :------- | :-------- | :-------------------------- | :--------------------------------------------------- |
+| `GET`    | `/me`     | Get current user profile    | -                                                    |
+| `PATCH`  | `/me`     | Update current user profile | `{ username?, bio?, profilePictureUrl?, fullname? }` |
+| `DELETE` | `/me`     | Delete current user account | -                                                    |
+| `GET`    | `/search` | Search profiles             | Query params (e.g., `?q=username`)                   |
+| `GET`    | `/:id`    | Get profile by ID           | -                                                    |
 
 ### Rooms (`/api/rooms`)
 
