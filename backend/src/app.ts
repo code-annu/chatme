@@ -3,6 +3,8 @@ import express, { Express, Request, Response } from "express";
 import dns from "dns";
 import { authRouter } from "./api/router/auth-router";
 import { profileRouter } from "./api/router/profile-router";
+import { messageRouter } from "./api/router/message-router";
+import { roomRouter } from "./api/router/room-router";
 import { errorHandler } from "./api/middleware/handle-error";
 
 const app: Express = express();
@@ -21,6 +23,8 @@ app.get("/", (req: Request, res: Response) => {
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
+app.use("/api/messages", messageRouter);
+app.use("/api/rooms", roomRouter);
 
 app.use(errorHandler);
 
