@@ -7,7 +7,6 @@ export abstract class MessageUtil {
     MessageStatus.SENT,
     MessageStatus.DELIVERED,
     MessageStatus.READ,
-    MessageStatus.DELETED,
   ];
 
   public static validateMessageStatus(

@@ -41,7 +41,7 @@ export class UpdateMessageStatusUsecase {
       );
     }
 
-    if (message.senderId !== userId) {
+    if (message.senderId === userId) {
       throw new ForbiddenError("Sender can't update the status of messages!");
     }
 
