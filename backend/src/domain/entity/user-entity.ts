@@ -16,20 +16,20 @@ export interface User {
 }
 
 export interface UserCreate {
-  readonly email: string;
-  readonly passwordHash: string;
-  readonly firstName: string;
-  readonly lastName?: string;
-  readonly bio?: string;
-  readonly avatarUrl?: string;
+  email: string;
+  passwordHash: string;
+  firstName: string;
+  lastName?: string;
+  bio?: string;
+  avatarUrl?: string;
 }
 
 export interface UserUpdate {
-  readonly firstName?: string;
-  readonly lastName?: string;
-  readonly bio?: string;
-  readonly avatarUrl?: string;
-  readonly isVerified?: boolean;
-  readonly lastActiveAt?: Date | null;
-  readonly isOnline?: boolean;
+  firstName?: string;
+  lastName?: string;
+  bio?: string;
+  avatarUrl?: string;
+  isVerified?: boolean;
+  lastActiveAt?: Date | null;
+  isOnline?: boolean;
 }

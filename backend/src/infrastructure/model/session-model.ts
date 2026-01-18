@@ -32,9 +32,9 @@ const SessionSchema = new Schema<ISessionDocument>(
 );
 
 // Indexes for faster lookups
-SessionSchema.index({ userId: 1 });
-SessionSchema.index({ token: 1 });
-SessionSchema.index({ expiresAt: 1 });
+// SessionSchema.index({ userId: 1 });
+// SessionSchema.index({ token: 1 });
+// SessionSchema.index({ expiresAt: 1 });
 
 export const SessionModel: Model<ISessionDocument> =
   mongoose.model<ISessionDocument>("Session", SessionSchema);

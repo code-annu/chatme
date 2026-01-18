@@ -14,7 +14,7 @@ export abstract class AuthResponse {
       data: {
         user: {
           id: user.id,
-          name: user.firstName,
+          firstName: user.firstName,
           email: user.email,
           avatarUrl: user.avatarUrl,
           createdAt: user.createdAt,

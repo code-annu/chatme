@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { injectable } from "inversify";
-import { container } from "../../config/inversify.config";
+import { inject, injectable } from "inversify";
+import { TYPES } from "../../config/types";
 import { SignupUsecase } from "../../application/usecase/authentication/SignupUsecase";
 import { LoginUsecase } from "../../application/usecase/authentication/LoginUsecase";
 import { RefreshTokenUsecase } from "../../application/usecase/authentication/RefreshTokenUsecase";
@@ -9,11 +9,19 @@ import { AuthResponse } from "../response/AuthResponse";
 
 @injectable()
 export class AuthController {
+  constructor(
+    @inject(TYPES.SignupUsecase)
+    private readonly signupUsecase: SignupUsecase,
+    @inject(TYPES.LoginUsecase)
+    private readonly loginUsecase: LoginUsecase,
+    @inject(TYPES.RefreshTokenUsecase)
+    private readonly refreshTokenUsecase: RefreshTokenUsecase,
+  ) {}
+
   async signup(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const signupUsecase = container.get(SignupUsecase);
       const input: SignupInput = req.body;
-      const result = await signupUsecase.execute(input);
+      const result = await this.signupUsecase.execute(input);
       const response = AuthResponse.toSingle(
         result,
         "User registered successfully",
@@ -27,9 +35,8 @@ export class AuthController {
 
   async login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const loginUsecase = container.get(LoginUsecase);
       const input: LoginInput = req.body;
-      const result = await loginUsecase.execute(input);
+      const result = await this.loginUsecase.execute(input);
       const response = AuthResponse.toSingle(result, "Login successful", 200);
       res.status(200).json(response);
     } catch (error) {
@@ -43,9 +50,8 @@ export class AuthController {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const refreshTokenUsecase = container.get(RefreshTokenUsecase);
       const { token } = req.body;
-      const result = await refreshTokenUsecase.execute(token);
+      const result = await this.refreshTokenUsecase.execute(token);
       const response = AuthResponse.toSingle(
         result,
         "Token refreshed successfully",
@@ -57,5 +63,3 @@ export class AuthController {
     }
   }
 }
-
-export const authController = new AuthController();
